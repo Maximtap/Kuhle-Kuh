@@ -16,15 +16,21 @@ public class KuhlKI implements AIBase{
 	@Override
 	public void updateTask() {
 		
-		if(kuh.getMotionY() == 0 && kuh.getMotionX() == 0 && kuh.getMotionZ() == 0) {
+		if(kuh.getMotionY() > 0) {
+			kuh.setMotionY(0.0);
+		} else if(kuh.getMotionX() == 0 && kuh.getMotionZ() == 0) {
 			kuh.setMotionY(1.0);
 			
-			if(besitzer.getX() - kuh.getX() > 0) {
+			if(besitzer.getLocation().getX() - kuh.getLocation().getX() > 0) {
 				kuh.setMotionX(0.2);
+			} else {
+				kuh.setMotionX(-0.2);
 			}
 			
-			if(besitzer.getZ() - kuh.getZ() > 0) {
+			if(besitzer.getLocation().getZ() - kuh.getLocation().getZ() > 0) {
 				kuh.setMotionZ(0.2);
+			} else {
+				kuh.setMotionZ(-0.2);
 			}
 		}
 		
